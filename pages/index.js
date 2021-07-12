@@ -34,7 +34,7 @@ export default function Home() {
           
           <div className="welcomeArea" style={{ gridArea: 'welcomeArea' }}>
             <Box>
-              <h1 className="title">Bem Vindo(a), {usuarioAleatorio.toUpperCase().replace('-', ' ')}</h1>
+              <h1 className="title">Bem Vindo(a), {usuarioAleatorio.replace('-', ' ').replace('t', 'T').replace('s', 'S')}</h1>
               <OrkutNostalgicIconSet />
             </Box>          
           </div>
