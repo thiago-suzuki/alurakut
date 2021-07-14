@@ -59,6 +59,13 @@ export default function Home() {
           console.log(err)
         })
     }, []);
+
+    function Random(min, max) {
+      min = Math.ceil(min);
+      max = Math.ceil(max);
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+
     return ( 
       <>
         <AlurakutMenu githubUser={githubUser}/>
@@ -73,7 +80,16 @@ export default function Home() {
               <h1 className="title">
                 Bem Vindo(a), {userInfo.name}
               </h1>
-              <OrkutNostalgicIconSet confiavel="3" legal="3" sexy="2" />
+              <OrkutNostalgicIconSet
+                recados={Random(1,100)}
+                fotos={Random(1,100)}
+                videos={Random(1,100)}
+                fas={Random(1,20)}
+                mensagens={Random(1,100)}
+                confiavel={Random(1,3)}
+                legal={Random(1,3)}
+                sexy={Random(1,3)}
+              />
             </Box>
 
             <Box>
