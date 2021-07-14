@@ -27,18 +27,19 @@ function ProfileSideBar({githubUser}) {
 export default function Home() {
     const githubUser = 'thiago-suzuki';
     const [comunidades, setComunidades] = React.useState([{
-      id: '1564161115169856',
-      title: 'Eu odeio acordar cedo',
-      image: 'https://alurakut.vercel.app/capa-comunidade-01.jpg'
+      id: '165165146516516',
+      url: 'https://www.alura.com.br/',
+      title: 'Alura',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvHnrABvcShcCoG_01ZN3q8oGA4CiEhdr1vw&usqp=CAU'
     }]);
     /* const comunidades = ['Alurakut']; */
     const pessoasFavoritas = [
-      'juunegreiros',
+      'john-smilga',
       'omariosouto',
       'peas',
       'rafaballerini',
       'marcobrunodev',
-      'felipefialho'
+      'thecodercoder'
     ]
     return ( 
       <>
@@ -64,8 +65,9 @@ export default function Home() {
                 console.log('Campo: ', dadosDoForm.get('image'));
                 const comunidade = {
                   id: new Date().toISOString(),
+                  url: dadosDoForm.get('url') ,
                   title: dadosDoForm.get('title'), 
-                  image: dadosDoForm.get('image'), 
+                  image: dadosDoForm.get('image') 
                 }
                 const comunidadesAtualizadas = [...comunidades, comunidade];
                 setComunidades(comunidadesAtualizadas)
@@ -86,6 +88,14 @@ export default function Home() {
                     type="text"
                    />
                 </div>
+                <div>
+                  <input
+                    placeholder="Coloque a URL do site"
+                    name="url"
+                    aria-label="Coloque a URL do site"
+                    type="text"
+                />
+              </div>
 
                 <button>
                   Criar Comunidade
@@ -103,7 +113,7 @@ export default function Home() {
                 {comunidades.map((itemAtual) => {
                   return (
                     <li key={itemAtual.id}>
-                      <a href={`/users/${itemAtual.title}`}>
+                      <a href={itemAtual.url} target="_blank">
                         <img src={itemAtual.image} />
                         <span>{itemAtual.title}</span>
                       </a>
