@@ -27,12 +27,22 @@ function ProfileSideBar({githubUser}) {
 
 export default function Home() {
     const githubUser = 'thiago-suzuki';
-    const [comunidades, setComunidades] = React.useState([{
-      id: '165165146516516',
-      url: 'https://www.alura.com.br/',
-      title: 'Alura',
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvHnrABvcShcCoG_01ZN3q8oGA4CiEhdr1vw&usqp=CAU'
-    }]);
+    const [comunidades, setComunidades] = React.useState([
+      {
+        id: '165651',
+        url: 'https://www.alura.com.br/',
+        title: 'Alura',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvHnrABvcShcCoG_01ZN3q8oGA4CiEhdr1vw&usqp=CAU'
+      },
+      
+      {
+        id: '876543',
+        url: 'https://www.hostinger.com.br/tutoriais/o-que-e-javascript',
+        title: 'JavaScript',
+        image: 'https://cdn.iconscout.com/icon/free/png-256/javascript-2752148-2284965.png'
+      }
+
+    ]);
     const [userInfo, setUserInfo] = useState({})
     /* const comunidades = ['Alurakut']; */
     const pessoasFavoritas = [
@@ -41,7 +51,8 @@ export default function Home() {
       'peas',
       'rafaballerini',
       'marcobrunodev',
-      'thecodercoder'
+      'thecodercoder',
+      'luizomf'
     ]
     useEffect(() => {
       fetch(`https://api.github.com/users/${githubUser}`) 
@@ -94,7 +105,7 @@ export default function Home() {
 
             <Box>
               <h2 className="subTitle">O que você deseja fazer?</h2>  
-              <form onSubmit={function handleCriaComunidade(e) {
+              <form id="formComunidade" onSubmit={function handleCriaComunidade(e) {
                 e.preventDefault();
                 const dadosDoForm = new FormData(e.target);
                 console.log('Campo: ', dadosDoForm.get('title'));
@@ -107,6 +118,7 @@ export default function Home() {
                 }
                 const comunidadesAtualizadas = [...comunidades, comunidade];
                 setComunidades(comunidadesAtualizadas)
+                document.getElementById('formComunidade').reset();
               }}>
                 <div>
                   <input 
@@ -114,6 +126,7 @@ export default function Home() {
                     name="title" 
                     aria-label="Qual vai ser o nome da sua comunidade?" 
                     type="text"
+                    required
                    />
                 </div>
                 <div>
@@ -122,6 +135,7 @@ export default function Home() {
                     name="image" 
                     aria-label="Coloque uma URL para usarmos de Capa" 
                     type="text"
+                    required
                    />
                 </div>
                 <div>
@@ -130,6 +144,7 @@ export default function Home() {
                     name="url"
                     aria-label="Coloque a URL do site"
                     type="text"
+                    required
                 />
               </div>
 

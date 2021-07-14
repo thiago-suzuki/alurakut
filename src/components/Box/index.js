@@ -3,6 +3,7 @@ const Box = styled.div`
   background: #A9BCF5;
   border-radius: 8px;
   padding: 16px;
+  height: auto;
   /* CSS Pré-Pronto */
   margin-bottom: 10px;
   .boxLink {
