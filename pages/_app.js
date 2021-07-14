@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle `
 
   body {
     font-family: sans-serif;
-    background: url('https://picfiles.alphacoders.com/234/234564.jpg');
+    background: url('https://picfiles.alphacoders.com/274/274035.jpg');
     background-position: center;  
   }
 

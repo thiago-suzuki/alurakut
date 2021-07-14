@@ -3,6 +3,7 @@ import MainGrid from '../src/components/MainGrid'
 import Box from '../src/components/Box'
 import { AlurakutMenu, AlurakutProfileSidebarMenuDefault, OrkutNostalgicIconSet } from '../src/lib/AlurakutCommons'
 import { ProfileRelationsBoxWrapper } from '../src/components/ProfileRelations'
+import { useState, useEffect } from 'react'
 
 function ProfileSideBar({githubUser}) {
   return (
@@ -11,7 +12,7 @@ function ProfileSideBar({githubUser}) {
       <hr />
 
       <a className="boxLink" href={`https://github.com/${githubUser}`} target="_blank">
-        { githubUser }
+        @{githubUser}
       </a>
 
       <hr />
@@ -32,6 +33,7 @@ export default function Home() {
       title: 'Alura',
       image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvHnrABvcShcCoG_01ZN3q8oGA4CiEhdr1vw&usqp=CAU'
     }]);
+    const [userInfo, setUserInfo] = useState({})
     /* const comunidades = ['Alurakut']; */
     const pessoasFavoritas = [
       'john-smilga',
@@ -41,6 +43,22 @@ export default function Home() {
       'marcobrunodev',
       'thecodercoder'
     ]
+    useEffect(() => {
+      fetch(`https://api.github.com/users/${githubUser}`) 
+        .then(async (response) => {
+          if(response.ok) {
+            const resposta = await response.json()
+            return resposta
+          }
+          throw new Error("Não foi possível pegar os dados.")
+        })
+        .then((response) => {
+          setUserInfo(response);
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }, []);
     return ( 
       <>
         <AlurakutMenu githubUser={githubUser}/>
@@ -52,8 +70,10 @@ export default function Home() {
           
           <div className="welcomeArea" style={{ gridArea: 'welcomeArea' }}>
             <Box>
-              <h1 className="title">Bem Vindo(a)</h1>
-              <OrkutNostalgicIconSet />
+              <h1 className="title">
+                Bem Vindo(a), {userInfo.name}
+              </h1>
+              <OrkutNostalgicIconSet confiavel="3" legal="3" sexy="2" />
             </Box>
 
             <Box>

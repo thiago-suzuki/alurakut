@@ -54,7 +54,7 @@ export function AlurakutMenu({ githubUser }) {
 }
 AlurakutMenu.Wrapper = styled.header`
   width: 100%;
-  background-color: #04B4AE;  //#308BC5
+  background-color: #000000;  //#308BC5
 
   .alurakutMenuProfileSidebar {
     background: white;
@@ -96,7 +96,7 @@ AlurakutMenu.Wrapper = styled.header`
   }
 
   .container {
-    background-color: #04B4AE;
+    background-color: #000000;
     padding: 7px 16px;
     max-width: 1110px;
     margin: auto;
