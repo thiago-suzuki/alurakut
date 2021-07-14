@@ -23,6 +23,29 @@ function ProfileSideBar({githubUser}) {
   )
 }
 
+function ProfileRelationsBox(propriedades) {
+  return (
+     <ProfileRelationsBoxWrapper>
+      <h2 className="smallTitle">
+        {propriedades.title} ({propriedades.items.length})
+      </h2>
+
+      <ul>
+         {propriedades.items.slice(0,6).map((itemAtual) => {
+          return (
+            <li key={itemAtual.id}>
+              <a href={itemAtual.html_url} target="_blank" rel="noopener noreferrer">
+                <img src={itemAtual.avatar_url} />
+                <span>{itemAtual.login}</span>
+              </a>
+            </li>
+          ); 
+        })}
+      </ul>
+    </ProfileRelationsBoxWrapper>
+  )
+}
+
 
 
 export default function Home() {
@@ -43,17 +66,7 @@ export default function Home() {
       }
 
     ]);
-    const [userInfo, setUserInfo] = useState({})
-    /* const comunidades = ['Alurakut']; */
-    const pessoasFavoritas = [
-      'john-smilga',
-      'omariosouto',
-      'peas',
-      'rafaballerini',
-      'marcobrunodev',
-      'thecodercoder',
-      'luizomf'
-    ]
+    const [userInfo, setUserInfo] = useState({});
     useEffect(() => {
       fetch(`https://api.github.com/users/${githubUser}`) 
         .then(async (response) => {
@@ -71,6 +84,44 @@ export default function Home() {
         })
     }, []);
 
+    const [seguidores, setSeguidores] = useState([])
+    useEffect(() => {
+      fetch(`https://api.github.com/users/${githubUser}/followers`) 
+        .then(async (response) => {
+          if(response.ok) {
+            const resposta = await response.json()
+            return resposta
+          }
+          throw new Error("Não foi possível pegar os dados.")
+        })
+        .then((response) => {
+          setSeguidores(response);
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }, []);
+
+    const [seguindo, setSeguindo] = useState([])
+    useEffect(() => {
+      fetch(`https://api.github.com/users/${githubUser}/following`) 
+        .then(async (response) => {
+          if(response.ok) {
+            const resposta = await response.json()
+            return resposta
+          }
+          throw new Error("Não foi possível pegar os dados.")
+        })
+        .then((response) => {
+          setSeguindo(response);
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }, []);
+
+    /* const comunidades = ['Alurakut']; */
+    
     function Random(min, max) {
       min = Math.ceil(min);
       max = Math.ceil(max);
@@ -156,6 +207,11 @@ export default function Home() {
           </div>
           
           <div className="profileRelationsArea" style={{ gridArea: 'profileRelationsArea' }}>
+
+            <ProfileRelationsBox title="Seguidores" items={seguidores} />
+            
+            <ProfileRelationsBox title="Seguindo" items={seguindo} />
+
             <ProfileRelationsBoxWrapper>
               <h2 className="smallTitle">
                 Comunidades ({comunidades.length})
@@ -174,25 +230,6 @@ export default function Home() {
               </ul>
             </ProfileRelationsBoxWrapper>
 
-            <ProfileRelationsBoxWrapper>
-              <h2 className="smallTitle">
-                Pessoas ({pessoasFavoritas.length})
-              </h2>
-              
-               <ul>
-                {pessoasFavoritas.map((itemAtual) => {
-                  return (
-                    <li key={itemAtual}>
-                      <a href={`https://github.com/${itemAtual}`} target="_blank">
-                        <img src={`https://github.com/${itemAtual}.png`} />
-                        <span>{itemAtual}</span>
-                      </a>
-                    </li>
-                  )
-                })}
-              </ul>
-              
-            </ProfileRelationsBoxWrapper>
           </div>
         </MainGrid>
       </>
