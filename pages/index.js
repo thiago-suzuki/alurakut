@@ -4,6 +4,7 @@ import Box from '../src/components/Box'
 import { AlurakutMenu, AlurakutProfileSidebarMenuDefault, OrkutNostalgicIconSet } from '../src/lib/AlurakutCommons'
 import { ProfileRelationsBoxWrapper } from '../src/components/ProfileRelations'
 import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
 
 function ProfileSideBar({githubUser}) {
   return (
@@ -130,6 +131,7 @@ export default function Home() {
 
     return ( 
       <>
+        <motion.div initial={{opacity: 0, y: -300}} animate={{opacity: 1, y: 0}} transition={{duration: 3}}>
         <AlurakutMenu githubUser={githubUser}/>
         <MainGrid>
           {/* <Box style="grid-area: profileArea;"> */}
@@ -232,6 +234,7 @@ export default function Home() {
 
           </div>
         </MainGrid>
+        </motion.div>
       </>
     )
 }
