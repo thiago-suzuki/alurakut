@@ -293,6 +293,7 @@ export async function getStaticProps(context) {
     }
   })
   .then((resposta) => resposta.json())
+  console.log(isAuthenticated)
 
   if(!isAuthenticated) {
     return {
