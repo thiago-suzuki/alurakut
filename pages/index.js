@@ -302,7 +302,7 @@ export async function getServerSideProps(context) {
     }
   }).then((resposta) => resposta.json())
 
-  if (isAuthenticated) {
+  if (!isAuthenticated) {
     return {
       redirect: {
         destination: '/login',
