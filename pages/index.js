@@ -51,7 +51,7 @@ function ProfileRelationsBox(propriedades) {
 
 export default function Home() {
     const githubUser = 'thiago-suzuki';
-    const [comunidades, setComunidades] = React.useState([
+    /*const [comunidades, setComunidades] = React.useState([
       {
         id: '165651',
         url: 'https://www.alura.com.br/',
@@ -66,7 +66,39 @@ export default function Home() {
         image: 'https://cdn.iconscout.com/icon/free/png-256/javascript-2752148-2284965.png'
       }
 
-    ]);
+    ]);*/
+
+    //API GraphQL
+    const [comunidades, setComunidades] = useState([])
+    useEffect(() => {
+      fetch('https://graphql.datocms.com/', {
+        method: 'POST',
+        headers: {
+          'Authorization': '027586767a0bf3128ad03bca6dd148',
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          "query": `query {
+            allComunidades {
+              id
+              title
+              image
+              url
+            }
+        }` })
+      })
+        .then((resposta) => resposta.json())
+        .then((respComp) => {
+          const comunidadesDato = respComp.data.allComunidades
+          console.log(comunidadesDato)
+          setComunidades(comunidadesDato)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }, [])
+
     const [userInfo, setUserInfo] = useState({});
     useEffect(() => {
       fetch(`https://api.github.com/users/${githubUser}`) 
@@ -164,13 +196,24 @@ export default function Home() {
                 console.log('Campo: ', dadosDoForm.get('title'));
                 console.log('Campo: ', dadosDoForm.get('image'));
                 const comunidade = {
-                  id: new Date().toISOString(),
                   url: dadosDoForm.get('url') ,
                   title: dadosDoForm.get('title'), 
                   image: dadosDoForm.get('image') 
                 }
-                const comunidadesAtualizadas = [...comunidades, comunidade];
-                setComunidades(comunidadesAtualizadas)
+                fetch('/api/comunidades', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(comunidade),
+                })
+                  .then(async (respomse) => {
+                    const dados = await response.json();
+                    console.log(dados.registroCriado);
+                    const comunidade = dados.registroCriado;
+                    const comunidadesAtualizadas = [...comunidades, comunidade]
+                    setComunidades(comunidadesAtualizadas)
+                  })
                 document.getElementById('formComunidade').reset();
               }}>
                 <div>
