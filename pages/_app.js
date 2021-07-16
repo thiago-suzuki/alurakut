@@ -15,6 +15,17 @@ const GlobalStyle = createGlobalStyle `
     background-position: center;  
   }
 
+  #loginStyle {
+    background: url('https://images5.alphacoders.com/307/thumb-1920-307270.jpg');
+    background-position: center;
+    background-size: 100%;
+  }
+
+  #ENTRARJA {
+    color: #0000FF;
+  }
+  
+
   #__next {
     display: flex;
     min-height: 100vh;

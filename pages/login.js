@@ -9,7 +9,12 @@ export default function LoginScreen() {
   const [githubUser, setGithubUser] = React.useState("");
 
   return (
-    <main style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <main id="loginStyle" style={{ 
+      display: 'flex', 
+      flex: 1, 
+      alignItems: 'center', 
+      justifyContent: 'center'
+    }}>
       <div className="loginScreen">
         <section className="logoArea">
           <img src="https://alurakut.vercel.app/logo.svg" />
@@ -44,6 +49,7 @@ export default function LoginScreen() {
               Acesse agora mesmo com seu usuário do <strong>GitHub</strong>!
           </p>
             <input
+                id="inputLogin"
                 placeholder="Usuário"
                 value={githubUser}
                 onChange={(evento) => {
@@ -62,7 +68,7 @@ export default function LoginScreen() {
           <footer className="box">
             <p>
               Ainda não é membro? <br />
-              <a href="/login">
+              <a id="ENTRARJA" href="/login">
                 <strong>
                   ENTRAR JÁ
               </strong>

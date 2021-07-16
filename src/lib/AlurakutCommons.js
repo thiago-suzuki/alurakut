@@ -360,7 +360,7 @@ const AlurakutLoginScreen = css`
     }
     .logoArea {
       grid-area: logoArea;
-      background-color: var(--backgroundTertiary);
+      background-color: #2EFE2E;
       border-radius: var(--commonRadius);
       padding: var(--gutter);
       text-align: center;
@@ -380,7 +380,7 @@ const AlurakutLoginScreen = css`
           margin-bottom: 12px;
         }
         strong {
-          color: var(--colorQuarternary);
+          color: #0000FF;
         }
       }
       img {
@@ -402,7 +402,7 @@ const AlurakutLoginScreen = css`
         padding: var(--gutter);
         padding-left: 50px;
         padding-right: 50px;
-        background-color: var(--backgroundSecondary);
+        background-color: #2EFE2E;
         border-radius: var(--commonRadius);
         flex: 1;
         &:not(:last-child) {
@@ -437,14 +437,14 @@ const AlurakutLoginScreen = css`
           border: 0;
           padding: 12px;
           border-radius: var(--commonRadius);
-          background-color: var(--colorPrimary);
+          background-color: #0000FF;
           color: var(--textSecondaryColor);
         }
       }
     }
     .footerArea {
       grid-area: footerArea;
-      background-color: var(--backgroundQuarternary);
+      background-color: #2EFE2E;
       border-radius: var(--commonRadius);
       padding: 8px;
       p {
@@ -452,7 +452,7 @@ const AlurakutLoginScreen = css`
         text-align: center;
         a {
           text-decoration: none;
-          color: var(--colorPrimary);
+          color: #0000FF;
         }
       }
     }
