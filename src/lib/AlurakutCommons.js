@@ -1,9 +1,12 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import NextLink from 'next/link';
+import { useState, useEffect } from 'react'
 
 const BASE_URL = 'http://alurakut.vercel.app/';
 const v = '1';
+
+
 
 
 function Link({ href, children, ...props }) {
@@ -35,7 +38,7 @@ export function AlurakutMenu({ githubUser }) {
         </nav>
 
         <nav>
-          <a href={`/logout`}>
+          <a href={'/login'}>
             Sair
           </a>
           <div>
@@ -47,6 +50,7 @@ export function AlurakutMenu({ githubUser }) {
           {isMenuOpen && <img src={`${BASE_URL}/icons/menu-open.svg?v=${v}`} />}
           {!isMenuOpen && <img src={`${BASE_URL}/icons/menu-closed.svg?v=${v}`} />}
         </button>
+
       </div>
       <AlurakutMenuProfileSidebar githubUser={githubUser} />
     </AlurakutMenu.Wrapper>
@@ -188,14 +192,15 @@ function AlurakutMenuProfileSidebar({ githubUser }) {
 // ================================================================================================================
 // AlurakutProfileSidebarMenuDefault
 // ================================================================================================================
-export function AlurakutProfileSidebarMenuDefault() {
+export function AlurakutProfileSidebarMenuDefault(props) {
+  const githubUser = props.githubUser
   return (
     <AlurakutProfileSidebarMenuDefault.Wrapper>
       <nav>
         <a href="/">
           <img src={`${BASE_URL}/icons/user.svg`} />
             Perfil
-          </a>
+        </a>
         <a href="/">
           <img src={`${BASE_URL}/icons/book.svg`} />
             Recados
@@ -215,7 +220,7 @@ export function AlurakutProfileSidebarMenuDefault() {
           <img src={`${BASE_URL}/icons/plus.svg`} />
             GitHub Trends
           </a>
-        <a href="/logout">
+        <a href="/login">
           <img src={`${BASE_URL}//icons/logout.svg`} />
             Sair
           </a>

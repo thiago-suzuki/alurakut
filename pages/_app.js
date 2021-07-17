@@ -12,13 +12,15 @@ const GlobalStyle = createGlobalStyle `
   body {
     font-family: sans-serif;
     background: url('https://picfiles.alphacoders.com/274/274035.jpg');
-    background-position: center;  
+    background-position: center;
+    background-attachment: fixed;
   }
 
   #loginStyle {
     background: url('https://images5.alphacoders.com/307/thumb-1920-307270.jpg');
     background-position: center;
     background-size: 100%;
+    
   }
 
   #ENTRARJA {
