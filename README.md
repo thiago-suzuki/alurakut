@@ -4,6 +4,9 @@
 <h3 align="center">
 
 [Veja aqui o site](https://alurakut-thiago-suzuki.vercel.app/)
+
+<br>
+
 ![Screenshot](Site.jpg)
 
 </h3>
