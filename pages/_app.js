@@ -14,6 +14,7 @@ const GlobalStyle = createGlobalStyle `
     background: url('https://picfiles.alphacoders.com/274/274035.jpg');
     background-position: center;
     background-attachment: fixed;
+    background-size: 100%;
   }
 
   #loginStyle {
